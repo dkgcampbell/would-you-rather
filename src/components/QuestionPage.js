@@ -22,7 +22,7 @@ class QuestionPage extends Component {
   }
 
   render() {
-    const { authedUserId, question, user } = this.props;
+    const { authedUserId, question, user, questionAnswered } = this.props;
 
     if (!authedUserId) {
       return <LogIn />;
@@ -35,8 +35,8 @@ class QuestionPage extends Component {
     return (
       <div>
         <h3>Would you rather...</h3>
-        <div>{question.optionOne.text} {this.renderVotes(question.optionOne)}</div>
-        <div>{question.optionTwo.text} {this.renderVotes(question.optionTwo)}</div>
+        <div>{questionAnswered === 'optionOne' ? <strong>{question.optionOne.text}</strong> : question.optionOne.text} {this.renderVotes(question.optionOne)}</div>
+        <div>{questionAnswered === 'optionTwo' ? <strong>{question.optionTwo.text}</strong> : question.optionTwo.text} {this.renderVotes(question.optionTwo)}</div>
         <img src={user.avatarURL} width='50' height='50' alt={user.name} />
       </div>
     );
