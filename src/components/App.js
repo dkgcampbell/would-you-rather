@@ -19,8 +19,6 @@ class App extends Component {
   render() {
     const { authedUserId, users } = this.props;
 
-    console.log('<App> authedUserId: ', authedUserId)
-
     if (!authedUserId) {
       return <LogIn />;
     }
