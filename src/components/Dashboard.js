@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
     const allUsersArray = Object.keys(users).map(userId => users[userId])
     const authedUser = allUsersArray.filter(user => user.id === authedUserId)[0]
-    const allQuestionsArray = Object.keys(questions).map(index => questions[index])
+    const allQuestionsArray = Object.keys(questions).map(index => questions[index]).sort((a, b) => b.timestamp - a.timestamp)
     const answeredQuestions = allQuestionsArray.filter(question => authedUser.answers[question.id])
     const unansweredQuestions = allQuestionsArray.filter(question => !authedUser.answers[question.id])
 
