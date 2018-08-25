@@ -4,15 +4,18 @@ import LogIn from './LogIn';
 
 class QuestionPage extends Component {
   renderVotes = (option) => {
-    const { totalUsers } = this.props
-    const votes = option ? option.votes.length : 0
-    const percentageVote = (totalUsers > 0 ? votes / totalUsers * 100 : 0).toFixed(2)
-    if (votes === 1) {
-      return `(1 vote, ${percentageVote}%)`
-    }
+    const { totalUsers, questionAnswered } = this.props
 
-    if (votes > 1) {
-      return `(${option.votes.length} votes, ${percentageVote}%)`
+    if (questionAnswered) {
+      const votes = option ? option.votes.length : 0
+      const percentageVote = (totalUsers > 0 ? votes / totalUsers * 100 : 0).toFixed(2)
+      if (votes === 1) {
+        return `(1 vote, ${percentageVote}%)`
+      }
+
+      if (votes > 1) {
+        return `(${option.votes.length} votes, ${percentageVote}%)`
+      }
     }
 
     return ''
@@ -51,10 +54,15 @@ const mapStateToProps = ({ authedUserId, users, questions }, props) => {
     ? allUsersArray.filter(u => u.id === question.author)[0]
     : null
 
+  const authedUser = allUsersArray.filter(user => user.id === authedUserId)[0]
+  console.log(authedUser.answers[question.id])
+  const questionAnswered = authedUser.answers[question.id]
+
   return {
     authedUserId,
     question: question ? question : null,
     user: user ? user : null,
+    questionAnswered,
     totalUsers: Object.keys(users).length
   }
 };
