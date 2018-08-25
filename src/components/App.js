@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import LogIn from './LogIn'
@@ -8,6 +8,7 @@ import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
+import NotFound from './NotFound'
 
 class App extends Component {
   componentDidMount() {
@@ -30,12 +31,13 @@ class App extends Component {
           <h1>Would You Rather... ?</h1>
           <span>Hi {users[authedUserId].name}</span>
           <Nav />
-          <div>
+          <Switch>
             <Route path='/' exact component={Dashboard} />
             <Route path='/questions/:question_id' component={QuestionPage} />
             <Route path='/leaderboard' component={Leaderboard} />
             <Route path='/add' component={NewQuestion} />
-          </div>
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </Router>
     )
