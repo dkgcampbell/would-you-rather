@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogIn from './LogIn';
-import Question from './Question';
 
 class QuestionPage extends Component {
+  renderVotes = (option) => {
+    console.log(option)
+    if (option && option.votes.length === 1) {
+      return `(1 vote)`
+    }
+
+    if (option && option.votes.length > 1) {
+      return `(${option.votes.length} votes)`
+    }
+
+    return ''
+  }
+
   render() {
     const { authedUserId, question, user } = this.props;
 
@@ -18,8 +30,8 @@ class QuestionPage extends Component {
     return (
       <div>
         <h3>Would you rather...</h3>
-        <div>{question.optionOne.text}</div>
-        <div>{question.optionTwo.text}</div>
+        <div>{question.optionOne.text} {this.renderVotes(question.optionOne)}</div>
+        <div>{question.optionTwo.text} {this.renderVotes(question.optionTwo)}</div>
         <img src={user.avatarURL} width='50' height='50' alt={user.name} />
       </div>
     );
