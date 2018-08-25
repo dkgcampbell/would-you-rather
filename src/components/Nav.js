@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { unsetAuthedUser } from '../actions/authedUser';
 
 class Nav extends Component {
+  handleClick = () => {
+    const { dispatch } = this.props;
+    dispatch(unsetAuthedUser());
+  };
+  
   render() {
     return (
       <nav>
@@ -22,9 +29,10 @@ class Nav extends Component {
             </NavLink>
           </li>
         </ul>
+        <button onClick={this.handleClick}>Log Out</button>
       </nav>
     );
   }
 }
 
-export default Nav
+export default connect()(Nav)
