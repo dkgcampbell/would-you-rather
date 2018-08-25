@@ -15,21 +15,19 @@ class App extends Component {
   }
 
   render() {
-    const { authedUser } = this.props;
+    const { authedUserId, users } = this.props;
 
-    console.log(authedUser)
+    console.log('<App> authedUserId: ', authedUserId)
 
-    if (!authedUser) {
+    if (!authedUserId) {
       return <LogIn />;
     }
 
     return (
       <Router>
         <div>
-          <div>
-            Would You Rather... ?
-          </div>
-          <span>Hi {authedUser}</span>
+          <h1>Would You Rather... ?</h1>
+          <span>Hi {users[authedUserId].name}</span>
           <Nav />
           <div>
             <Route path='/' exact component={Dashboard} />
@@ -42,9 +40,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
+const mapStateToProps = ({ authedUserId, users }) => {
   return {
-    authedUser
+    authedUserId,
+    users
   };
 };
 

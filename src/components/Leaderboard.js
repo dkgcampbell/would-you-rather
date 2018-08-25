@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LogIn from './LogIn';
 
-const Leaderboard = ({ authedUser, users }) => {
-  if (!authedUser) {
+const Leaderboard = ({ authedUserId, users }) => {
+  if (!authedUserId) {
     return <LogIn />;
   }
 
@@ -14,8 +14,8 @@ const Leaderboard = ({ authedUser, users }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, users }) => ({
-  authedUser,
+const mapStateToProps = ({ authedUserId, users }) => ({
+  authedUserId,
   users
 });
 

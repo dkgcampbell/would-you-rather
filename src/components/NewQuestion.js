@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LogIn from './LogIn';
 
-const NewQuestion = ({ authedUser }) => {
-  if (!authedUser) {
+const NewQuestion = ({ authedUserId }) => {
+  if (!authedUserId) {
     return <LogIn />;
   }
 
@@ -14,8 +14,8 @@ const NewQuestion = ({ authedUser }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser }) => ({
-  authedUser
+const mapStateToProps = ({ authedUserId }) => ({
+  authedUserId
 });
 
 export default connect(mapStateToProps)(NewQuestion);
