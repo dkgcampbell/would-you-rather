@@ -1,5 +1,5 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const ADD_QUESTION_ANSWER = "ADD_QUESTION_ANSWER";
+export const ADD_QUESTION_ANSWER = "ADD_QUESTION_ANSWER"
 
 export function receiveQuestions (questions) {
   return {

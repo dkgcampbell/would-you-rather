@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogIn from './LogIn';
-import { addQuestionAnswer } from '../actions/questions'
+import { handleAddQuestionAnswer } from '../actions/shared'
 
 class QuestionPage extends Component {
   state = {
@@ -27,7 +27,7 @@ class QuestionPage extends Component {
   vote = (e, option) => {
     e.preventDefault()
     const { dispatch, authedUserId, question } = this.props
-    dispatch(addQuestionAnswer({ authedUser: authedUserId, qid: question.id, answer: option }));
+    dispatch(handleAddQuestionAnswer({ authedUser: authedUserId, qid: question.id, answer: option }));
     this.setState({
       questionAnswered: option
     })
