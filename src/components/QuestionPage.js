@@ -92,7 +92,9 @@ const mapStateToProps = ({ authedUserId, users, questions }, props) => {
     : null
 
   const authedUser = allUsersArray.filter(user => user.id === authedUserId)[0]
-  const questionAnswered = authedUser.answers[question.id]
+  const questionAnswered = question
+    ? authedUser.answers[question.id]
+    : null
 
   return {
     authedUserId,
