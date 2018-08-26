@@ -5,6 +5,7 @@ import LogIn from './LogIn';
 class Leaderboard extends Component {
   renderUsers = (users) => {
     const allUsersArray = Object.keys(users).map(userId => users[userId])
+      .sort((a,b) => (b.questions.length + Object.keys(b.answers).length) - (a.questions.length + Object.keys(a.answers).length) )
 
     return (
       <ol>
