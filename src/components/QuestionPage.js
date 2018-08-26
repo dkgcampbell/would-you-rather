@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogIn from './LogIn';
-import { handleAddQuestionAnswer } from '../actions/shared'
+import { handleAddQuestionAnswer } from '../actions/shared';
 
 class QuestionPage extends Component {
   state = {
